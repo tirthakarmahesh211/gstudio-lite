@@ -1,0 +1,32 @@
+{% load new_tags %}
+
+<!DOCTYPE html>
+<html lang="en" >
+    <meta charset="utf-8">
+    <body>
+    <form id="search_form" name="search_form" method="POST" action="{% url 'search' %}">
+	{% csrf_token %}
+     <ul style="text-decoration:none;list-style: none;">
+
+             <!--<input type="text" id="Search_Text" name="Search_Text">-->
+        <label for="SearchText" class="small-text-left large-text-right">
+               Enter a text:
+            </label>
+        <input type="text" id="SearchText" name="SearchText">
+        <li>
+            <!--<button type="button" id="Search_Button" name="Search_Button"> Search </button>-->
+                <input type="submit" value="Search" />
+        </li>
+     </ul>
+    </form>
+
+    <table>
+        <tr><td>documents found: {{total_hits}}</td></tr>
+             {% for doc in hits %}
+
+        <tr> <td> ID :{{ doc|get:"_id" }}</td><td>content: {{doc|get:"_source"|get:"content"}} </td></tr>
+                {% endfor%}
+
+    </table>
+    </body>
+</html>

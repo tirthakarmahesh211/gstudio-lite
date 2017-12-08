@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+    <meta charset="utf-8">
+    <body>
+
+    <!--{{ data123.tags }}
+
+    {%for value in data123.tags %}
+      <p>{{ value }}</p>
+     {% endfor %}-->
+
+	
+    <form id="search_form" name="search_form" method="POST" action="{% url 'view_json' %}">
+	{% csrf_token %}
+     <ul style="text-decoration:none;list-style: none;">
+
+             <!--<input type="text" id="Search_Text" name="Search_Text">-->
+        <label for="SearchText" class="small-text-left large-text-right">
+               Enter a text:
+            </label>
+        <input type="text" id="Search" name="Search">
+        <li>
+            <!--<button type="button" id="Search_Button" name="Search_Button"> Search </button>-->
+                <input type="submit" value="Search" />
+        </li>
+     </ul>
+    </form>
+
+        <table>
+
+    {% for key,value in data123.items %}
+        <!--<tr><td style="color:#ff4c52">{{ key }}: </td> <td style="color:#757474">{{ value}} </td><tr>-->
+        <tr><td style="color:#ff4c52">{{ key }}
+
+              <!--{% for str_value in data123.value %}
+               <td style="color:#757474">{{ str_value}} </td>
+               {% endfor %}-->
+
+            <td style="color:#757474">{{ value}} </td>
+
+        <tr>
+    {% endfor %}
+
+    </table>
+
+    </body>
+</html>
