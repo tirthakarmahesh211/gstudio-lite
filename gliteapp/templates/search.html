@@ -35,14 +35,21 @@
                 {% with doc|get:"_source"|get:"if_file"|get:"original"|get:"relurl" as original %}
                 {% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mime_type %}
                 {% endwith%}
-             {% with doc|get:"_source"|get:"if_file"|get:"mimetype" as mimetype %}
-                {% endwith%}
-                {% if  thumbnail  %}
-                <td><a href="{% static original %}"><img src="{% static thumbnail %}" /><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
-                {% else %}
+                {% with doc|get:"_source"|get:"if_file"|get:"mimetype" as mimetype %}
+
+                {% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mime_type %}
+
+
+                {% if  mime_type == "audio/mpeg" or  mimetype == "audio/mpeg" %}
+                <td><a href="{% static original %}"><img src="{% static 'mp3.png' %}" height="100px" width="90px" /><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
+                {% elif  mime_type == 'application/pdf' or  mimetype == 'application/pdf' %}
                 <td><a href="{% static original %}"><img src="{% static 'pdf_icon.jpeg' %}"  height="100px" width="90px"/><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
+                {% else %}
+                <td><a href="{% static original %}"><img src="{% static thumbnail %}" /><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
                 {% endif %}
                 {% endwith %}
+             {% endwith%}
+             {% endwith%}
              {% endwith %}
 
             {% endfor%}

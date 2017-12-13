@@ -24,7 +24,7 @@ def view_json(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             Search = form.cleaned_data['Search']
-            data = json.load(open('/home/siddhu/gstudio/data/glite-rcs-repo/Nodes/1/0/1/'+Search+'.json'))
+            data = json.load(open('/home/siddhu/gstudio/data/glite-rcs-repo/Nodes/f/1/0/'+Search+'.json'))
             #return HttpResponseRedirect('/views_json/')
             #t = loader.get_template('test.html')
             #c = RequestContext(request, {'data123': json.dumps(data)})
@@ -46,9 +46,10 @@ def search(request):
         form = SearchTextForm(request.POST)
         if form.is_valid():
             Search = form.cleaned_data['SearchText']
+		
             Search.encode('utf8')
             es = Elasticsearch()
-            res = es.search(index="gstudio-lite", doc_type="ncert", body={"query": {"multi_match":{ "query": Search, "fields": [ "name", "tags","content" ] }}})
+            res = es.search(index="gstudio-lite", doc_type="images,audios", body={"query": {"multi_match":{ "query": Search, "fields": [ "name", "tags","content" ] }}})
             #print("%d documents found:" % res['hits']['total'])
             doc={}
             for doc in res['hits']['hits']:
