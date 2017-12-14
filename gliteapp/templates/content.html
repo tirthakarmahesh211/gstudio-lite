@@ -9,113 +9,179 @@
 </head>
 <body>
 
-		<section>
+	<section>
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-info ">
-				<div class="panel-heading">
-					<!-- <form class="navbar-form" id="search_form" name="search_form" method="POST" action="{% url 'search' %}">
-						{% csrf_token %}
-
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-info ">
+					<div class="panel-heading">
+						<br/>
+						<form method="post" id="framework_form" method="POST">
 							<div class="form-group">
-
-								<label for="SearchText"> Enter a Text:</label>
-
-
-								<input type="text"  id="itemSearch" name="SearchText" class="form-control" placeholder="Advanced Filter">
-								<ul class="list-group" id="searchList">
-									<li class="list-group-item">Images</li>
-									<li class="list-group-item">Videos</li>
-									<li class="list-group-item">Audios</li>
-									<li class="list-group-item">Pdf Documents</li>
-								</ul>  
-								<button type="submit" class="btn btn-default">Submit</button>
-
+								<label>Advanced Search : </label>
+								<select id="framework" name="framework[]" multiple class="form-control" >
+									<option value="images">Images</option>
+									<option value="videos">Videos</option>
+									<option value="audios">Audios</option>
+									<option value="documents">Documents</option>
+									<option value="states">States</option>
+									<option value="groups">Groups</option>
+									<option value="partners">Partners</option>
+								</select>
 							</div>
-
-					</form> -->
-<!-- 
-					<div class="row">    
-						<div class="col-xs-8 col-xs-offset-2">
-							<form class="navbar-form" id="search_form" name="search_form" method="POST" action="{% url 'search' %}">
-							{% csrf_token %}
-							<div class="input-group">
-								<div class="input-group-btn search-panel">
-									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-										<span id="searchList">Filter by</span> <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu" id="searchList">
-										<li><a href="#images">Images</a></li>
-										<li><a href="#videos">Videos</a></li>
-										<li><a href="#audios">Audios ></a></li>
-										<li><a href="#documents">Documents < </a></li>
-									</ul>
-								</div>
-								<input type="hidden" name="search_param" value="all" id="search_param">         
-								<input type="text" id="itemSearch" name="SearchText" class="form-control" placeholder="Search term...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-								</span>
+							<div class="form-group">
+								<input type="submit" class="btn btn-info" name="submit" value="Submit" />
 							</div>
-						</div>
+						</form>
 					</div>
 
+					<div class="panel-body">
+						<div class="col-md-12">	
+							<div class="row">		
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Application</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Application</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
 
 
 
-				</div> -->
-					<br/>
-					<form method="post" id="framework_form" method="POST">
-						<div class="form-group">
-							<label>Advanced Search : </label>
-							<select id="framework" name="framework[]" multiple class="form-control" >
-								<option value="images">Images</option>
-								<option value="videos">Videos</option>
-								<option value="audios">Audios</option>
-								<option value="documents">Documents</option>
-								<option value="states">States</option>
-								<option value="groups">Groups</option>
-								<option value="partners">Partners</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<input type="submit" class="btn btn-info" name="submit" value="Submit" />
-						</div>
-					</form>
-					<br />
-				</div>
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
 
 
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
 
-	<div class="panel-body">
-	
-    <table>
-        <tr><td>documents found: {{total_hits}}</td></tr>
-             {% for doc in hits %}
+											<p class="">Lorem ipsum dolor sit amet.</p>
 
-        <tr> <td> ID :{{ doc|get:"_id" }}</td><td>content: {{doc|get:"_source"|get:"if_file"|get:"mime_type"}} </td>
-	
-	</tr>
-           {% endfor%}
+										</div>
+									</div>
+								</div>
 
-       
-    </table>
-	<table>	
-	{% for doc in hits %}	
-	<tr>
-	<td>
-	
-	
-	</td>
-	
-        {% endfor%}	
-	</tr>
-	</table>
-				</div>
-			</div>	
+
+							</div>
+						</section>		
+
+						<table>
+							<tr><td>documents found: {{total_hits}}</td></tr>
+							{% for doc in hits %}
+
+							<tr> <td> ID :{{ doc|get:"_id" }}</td><td>content: {{doc|get:"_source"|get:"if_file"|get:"mime_type"}} </td>
+
+							</tr>
+							{% endfor%}
+
+
+						</table>
+						<table>	
+							{% for doc in hits %}	
+							<tr>
+								<td>
+
+
+								</td>
+
+								{% endfor%}	
+							</tr>
+						</table>
+					</div>
+				</div>	
 			</div>
 		</div>	
-		</section>
+	</section>
 
 </body>
 </html>
