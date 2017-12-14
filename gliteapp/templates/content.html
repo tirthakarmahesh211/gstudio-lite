@@ -1,0 +1,187 @@
+{% load new_tags %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<section>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-info ">
+					<div class="panel-heading">
+						<br/>
+						<form method="post" id="framework_form" method="POST">
+							<div class="form-group">
+								<label>Advanced Search : </label>
+								<select id="framework" name="framework[]" multiple class="form-control" >
+									<option value="images">Images</option>
+									<option value="videos">Videos</option>
+									<option value="audios">Audios</option>
+									<option value="documents">Documents</option>
+									<option value="states">States</option>
+									<option value="groups">Groups</option>
+									<option value="partners">Partners</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-info" name="submit" value="Submit" />
+							</div>
+						</form>
+					</div>
+
+					<div class="panel-body">
+						<div class="col-md-12">	
+							<div class="row">		
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Application</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Application</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="thumbnail" width="200px" height="200px">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p> 
+
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="thumbnail">
+										<img src="/static/images/physics.jpeg" class="">
+										<div class="caption">
+											<h4 class="">Physics</h4>
+
+											<p class="">Lorem ipsum dolor sit amet.</p>
+
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+						</section>		
+
+						<table>
+							<tr><td>documents found: {{total_hits}}</td></tr>
+							{% for doc in hits %}
+
+							<tr> <td> ID :{{ doc|get:"_id" }}</td><td>content: {{doc|get:"_source"|get:"if_file"|get:"mime_type"}} </td>
+
+							</tr>
+							{% endfor%}
+
+
+						</table>
+						<table>	
+							{% for doc in hits %}	
+							<tr>
+								<td>
+
+
+								</td>
+
+								{% endfor%}	
+							</tr>
+						</table>
+					</div>
+				</div>	
+			</div>
+		</div>	
+	</section>
+
+</body>
+</html>
