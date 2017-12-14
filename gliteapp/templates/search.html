@@ -6,20 +6,31 @@
 <html lang="en" >
     <meta charset="utf-8">
     <body>
-    <form id="search_form" name="search_form" method="POST" action="{% url 'search' %}">
+    <form id="search_form" name="search_form" method="POST" action="{% url 'search' %}" >
 	{% csrf_token %}
-     <ul style="text-decoration:none;list-style: none;">
 
-             <!--<input type="text" id="Search_Text" name="Search_Text">-->
-        <label for="SearchText" class="small-text-left large-text-right">
-               Enter a text:
-            </label>
-        <input type="text" id="SearchText" name="SearchText">
-        <li>
+
+  {{ form.non_field_errors }}
+
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+  {% endfor %}
+       <table border="1">
+    {% for field in form.visible_fields %}
+      <tr>
+        <th>{{ field.label_tag }}</th>
+        <td>
+          {{ field.errors }}
+          {{ field }}
+          {{ field.help_text }}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
             <!--<button type="button" id="Search_Button" name="Search_Button"> Search </button>-->
                 <input type="submit" value="Search" />
-        </li>
-     </ul>
+
     </form>
 
     <table>
