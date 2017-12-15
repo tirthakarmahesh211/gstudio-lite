@@ -47,8 +47,8 @@ def search(request):
         if form.is_valid():
             Search = form.cleaned_data['SearchText']
             Search.encode('utf8')
-            es = Elasticsearch()
-            res = es.search(index="gstudio-lite", doc_type="ncert", body={"query": {"multi_match":{ "query": Search, "fields": [ "name", "tags","content" ] }}})
+            es = Elasticsearch('http://10.1.0.229:9200')
+            res = es.search(index="gstudio-lite", doc_type="videos", body={"query": {"multi_match":{ "query": Search, "fields": [ "name", "tags","content" ] }}})
             #print("%d documents found:" % res['hits']['total'])
             doc={}
             for doc in res['hits']['hits']:
