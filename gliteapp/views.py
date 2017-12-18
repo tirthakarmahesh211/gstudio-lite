@@ -24,7 +24,7 @@ def view_json(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             Search = form.cleaned_data['Search']
-            data = json.load(open('/home/siddhu/gstudio/data/glite-rcs-repo/Nodes/1/0/1/'+Search+'.json'))
+            data = json.load(open('/home/siddhu/gstudio/data/glite-rcs-repo/Nodes/f/1/1/'+Search+'.json'))
             #return HttpResponseRedirect('/views_json/')
             #t = loader.get_template('test.html')
             #c = RequestContext(request, {'data123': json.dumps(data)})
@@ -46,17 +46,23 @@ def search(request):
         form = SearchTextForm(request.POST)
         if form.is_valid():
             Search = form.cleaned_data['SearchText']
+            filter_field = form.cleaned_data['filter_field']
             Search.encode('utf8')
+
+        
+
             es = Elasticsearch('http://10.1.0.229:9200')
-            res = es.search(index="gstudio-lite", doc_type="videos", body={"query": {"multi_match":{ "query": Search, "fields": [ "name", "tags","content" ] }}})
+            print(filter_field)
+            res = es.search(index="gstudio-lite", doc_type=filter_field, body={"query": {"multi_match":{ "query": Search, "fields": [ "name", "tags","content" ] }}})
+
             #print("%d documents found:" % res['hits']['total'])
             doc={}
             for doc in res['hits']['hits']:
                 print("%s) %s" % (doc['_id'], doc['_source']['content']))
             return render(request, 'search.html', {'hits':res['hits']['hits'],'total_hits': res['hits']['total'],'form': form})
-    #else:
-        #form = SearchForm()
+    else:
+        form = SearchTextForm()
         #return HttpResponseRedirect('/')
 
-    return render(request, 'search.html', {})
+    return render(request, 'search.html', {'form': form})
 
