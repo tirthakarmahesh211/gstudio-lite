@@ -16,98 +16,27 @@
     <script src="{% static 'bootstrap/js/app.js' %}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>  
+  <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" /> -->
 
 
 
   </head>
 
   <body>
-
-
+  <header>
+    
     {% include "header.html" %}
+  </header>
+  <div class="container">
+
 
     {% include "content.html" %}
+  </div>
 
-    <form id="search_form" name="search_form" method="POST" action="{% url 'search' %}" >
-     {% csrf_token %}
-
-
-     {{ form.non_field_errors }}
-
-     {% for hidden_field in form.hidden_fields %}
-     {{ hidden_field.errors }}
-     {{ hidden_field }}
-     {% endfor %}
-      <table border="1">
-        {% for field in form.visible_fields %}
-          <tr>
-          <th>{{ field.label_tag }}</th>
-          <td>
-          {{ field.errors }}
-          {{ field }}
-          {{ field.help_text }}
-          </td>
-          </tr>
-        {% endfor %}
-      </table>
-    <!--<button type="button" id="Search_Button" name="Search_Button"> Search </button>-->
-    <input type="submit" value="Search" />
-
-  </form>
-
-  <table>
-    <tr><td>documents found: {{total_hits}}</td></tr>
-
-    <tr>
-     {% for doc in hits %}
-
-
-     <!--<td> ID :{{ doc|get:"_id" }}</td><td>content: {{ doc|get:"_source"|get:"content"}} </td>-->
-
-     {% with doc|get:"_source"|get:"if_file"|get:"thumbnail"|get:"relurl" as thumbnail %}
-     {% with doc|get:"_source"|get:"if_file"|get:"original"|get:"relurl" as original %}
-<!-- <<<<<<< HEAD
-                {% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mimetype %}
-                
-
-                {% if thumbnail %}
-                <td><a href="{% static original %}"><img src="{% static 'pdf_icon.jpeg' %}" /><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
-                {% elif mimetype == 'application/pdf' %}
-                <td><a href="{% static original %}"><img src="{% static 'pdf_icon.jpeg' %}"  height="100px" width="90px"/><br/>{{ doc|get:"_source"|get:"name"}}</a></td>   
-                {% endif %}
-        {% endwith%}
-                {% endwith %}
-                ======= -->
-                {% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mime_type %}
-                {% endwith%}
-                {% with doc|get:"_source"|get:"if_file"|get:"mimetype" as mimetype %}
-
-                {% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mime_type %}
-
-
-                {% if  mime_type == "audio/mpeg" or  mimetype == "audio/mpeg" %}
-                <td><a href="{% static original %}"><img src="{% static 'mp3.png' %}" height="100px" width="90px" /><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
-                {% elif  mime_type == 'application/pdf' or  mimetype == 'application/pdf' %}
-                <td><a href="{% static original %}"><img src="{% static 'pdf_icon.jpeg' %}"  height="100px" width="90px"/><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
-                {% else %}
-                <td><a href="{% static original %}"><img src="{% static thumbnail %}" /><br/>{{ doc|get:"_source"|get:"name"}}</a></td>
-                {% endif %}
-                {% endwith %}
-                {% endwith %}
-      {% endwith %}
-      {% endwith %}
-
-                {% endfor %}
-              </tr>
-
-            </table>
-
-
-          </body>
-          </html>
+  </body>
+</html>
 

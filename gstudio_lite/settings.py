@@ -121,7 +121,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "gliteapp/static"),
-    STATIC_URL,
-    '/home/siddhu/gstudio/data/media/'
+    os.path.join(BASE_DIR, "gliteapp/static/images"),
+   
 ]

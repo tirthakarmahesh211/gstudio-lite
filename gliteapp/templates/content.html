@@ -8,180 +8,89 @@
 	<title></title>
 </head>
 <body>
-
+<div class="container">
 	<section>
+
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-info ">
 					<div class="panel-heading">
 						<br/>
-						<form method="post" id="framework_form" method="POST">
-							<div class="form-group">
-								<label>Advanced Search : </label>
-								<select id="framework" name="framework[]" multiple class="form-control" >
-									<option value="images">Images</option>
-									<option value="videos">Videos</option>
-									<option value="audios">Audios</option>
-									<option value="documents">Documents</option>
-									<option value="states">States</option>
-									<option value="groups">Groups</option>
-									<option value="partners">Partners</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<input type="submit" class="btn btn-info" name="submit" value="Submit" />
-							</div>
+
+						<form id="search_form" name="search_form" method="POST" action="{% url 'search' %}" >
+							{% csrf_token %}
+
+
+							{{ form.non_field_errors }}
+
+							{% for hidden_field in form.hidden_fields %}
+							{{ hidden_field.errors }}
+							{{ hidden_field }}
+							{% endfor %}
+						
+								{% for field in form.visible_fields %}
+								
+									{{ field.label_tag }}
+				
+										{{ field.errors }}
+										{{ field }}
+										{{ field.help_text }}
+									
+							
+								{% endfor %}
+							
+						<div class="form-group">
+						
+							<button type="submit" class="btn btn-default" value="Search" placeholder="Search">Submit</button>
+
+
+							<!-- <input type="submit" value="Search" /> -->
+							<p>Total documents found: {{total_hits}}</p>
+						</div>	
 						</form>
+
 					</div>
 
 					<div class="panel-body">
 						<div class="col-md-12">	
-							<div class="row">		
-								<div class="col-md-2">
+							<div class="row ">
+								{% for doc in hits %}	
+								<div class="col-xs-24 col-sm-4 col-md-2" style="max-height:220" class="thumbnail-box">
 									<div class="thumbnail">
-										<img src="/static/images/physics.jpeg" class="">
+										{% with doc|get:"_source"|get:"if_file"|get:"thumbnail"|get:"relurl" as thumbnail %}
+										{% with doc|get:"_source"|get:"if_file"|get:"original"|get:"relurl" as original %}
+										{% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mime_type %}
+										{% endwith%}
+										{% with doc|get:"_source"|get:"if_file"|get:"mimetype" as mimetype %}
+
+										{% with doc|get:"_source"|get:"if_file"|get:"mime_type" as mime_type %}
+
 										<div class="caption">
-											<h4 class="">Physics</h4>
+											{% if  mime_type == "audio/mpeg" or  mimetype == "audio/mpeg" %}
+											<a href="{% static original %}"><img src="{% static 'images/mp3.jpg' %}" class="img-responsive" width="100%" /><hr/><h5>{{ doc|get:"_source"|get:"name"}}</h5></a>
+											{% elif  mime_type == 'application/pdf' or  mimetype == 'application/pdf' %}
+											<a href="{% static original %}"><img src="{% static 'pdf_icon.png' %}"  class="img-responsive"/><br/><h5>{{ doc|get:"_source"|get:"name"}}</h5></a>
+											{% else %}
+											<a href="{% static original %}"><img src="{% static thumbnail %}" class="img-responsive"/><br/><h5>{{ doc|get:"_source"|get:"name"}}</h5></a>
+											{% endif %}
+											{% endwith %}
+											{% endwith %}
+											{% endwith %}
+											{% endwith %}
+											{% if forloop.counter|divisibleby:5 %}
 
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
+                        {% endif %}
 										</div>
 									</div>
-								</div>
-
-								<div class="col-md-2">
-									<div class="thumbnail" width="200px" height="200px">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Physics</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-
-								<div class="col-md-2">
-									<div class="thumbnail" width="200px" height="200px">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Application</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-2">
-									<div class="thumbnail" width="200px" height="200px">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Application</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-2">
-									<div class="thumbnail" width="200px" height="200px">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Physics</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-
-								<div class="col-md-2">
-									<div class="thumbnail">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Physics</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-
-								<div class="col-md-2">
-									<div class="thumbnail">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Physics</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-
-
-								<div class="col-md-2">
-									<div class="thumbnail">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Physics</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p> 
-
-										</div>
-									</div>
-								</div>
-
-
-								<div class="col-md-2">
-									<div class="thumbnail">
-										<img src="/static/images/physics.jpeg" class="">
-										<div class="caption">
-											<h4 class="">Physics</h4>
-
-											<p class="">Lorem ipsum dolor sit amet.</p>
-
-										</div>
-									</div>
-								</div>
-
-
+								</div>	
+								{% endfor %}
 							</div>
-						</section>		
-
-						<table>
-							<tr><td>documents found: {{total_hits}}</td></tr>
-							{% for doc in hits %}
-
-							<tr> <td> ID :{{ doc|get:"_id" }}</td><td>content: {{doc|get:"_source"|get:"if_file"|get:"mime_type"}} </td>
-
-							</tr>
-							{% endfor%}
-
-
-						</table>
-						<table>	
-							{% for doc in hits %}	
-							<tr>
-								<td>
-
-
-								</td>
-
-								{% endfor%}	
-							</tr>
-						</table>
-					</div>
-				</div>	
-			</div>
+						</div>
+					</div>			
+				</div>
+			</div>	
 		</div>	
 	</section>
-
+</div>
 </body>
 </html>
